@@ -39,16 +39,23 @@ Welcome to Crush-o-Matic – your ultimate love equation solver! Here, we believ
     </div>
     <script>
         document.getElementById('calculateBtn').addEventListener('click', function() {
-            const yourName = document.getElementById('yourName').value;
-            const crushName = document.getElementById('crushName').value;
+            const yourName = document.getElementById('yourName').value
+            const crushName = document.getElementById('crushName').value
     
             if (yourName && crushName) {
-                const lovePercentage = Math.floor(Math.random() * 101);
-                alert(`Love percentage between ${yourName} and ${crushName} is ${lovePercentage}%!`);
+                const lovePercentage = Math.floor(Math.random() * 101)
+                // alert(`Love percentage between ${yourName} and ${crushName} is ${lovePercentage}%!`)
+                if (lovePercentage < 50){
+                alert(`The score of ${yourName} & ${crushName} is only ${lovePercentage}%. Your love life is like trying to mix oil and water—entertaining but ultimately a bit messy. Remember, even the universe thinks you two are a comedy duo, so keep laughing and maybe invest in separate Netflix accounts!`)
+                } else if (lovePercentage < 80) {
+                alert(`The score of ${yourName} & ${crushName} is ${lovePercentage}%. Congratulations! You two are like peanut butter and jelly: a solid combo that keeps things sweet and spreadable. Just remember, even the most perfect sandwiches need a little mustard every now and then to keep things interesting!`)
+                } else {
+                alert(`The score of ${yourName} & ${crushName} is ${lovePercentage}%. You two are a celestial alignment of epic proportions—like the cosmos decided to ship you together for a galactic love story. Enjoy the stardust and make sure to thank your lucky stars for this once-in-a-universe match!`)
+                }
             } else {
-                alert('Please enter both names!');
+                alert('Please enter both names!')
             }
-        });
+        })
     </script>    
 </body>
 </html>
