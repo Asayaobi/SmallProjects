@@ -24,13 +24,15 @@ Welcome to Crush-o-Matic – your ultimate love equation solver! Here, we believ
         <p class="text-gray-600 mb-6">
             Enter your name and the name of your crush, and let Crush-o-Matic work its charm. In just a click, discover the chemistry between you and your special someone!        </p>
         <form id="love-form" class="flex justify-between items-center mb-4">
-            <div class="flex flex-col">
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-col">
                 <label for="yourName" class="text-gray-600 mb-2">Your name</label>
                 <input id="yourName" type="text" placeholder="Full name" class="p-3 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-500">
-            </div>
+                </div>
             <div class="flex flex-col">
                 <label for="crushName" class="text-gray-600 mb-2">Your crush</label>
                 <input id="crushName" type="text" placeholder="Full name" class="p-3 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-500">
+                </div>
             </div>
         </form>
         <button id="calculateBtn" class="bg-gradient-to-r from-pink-500 to-red-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-gradient-to-l">
