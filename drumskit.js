@@ -1,3 +1,4 @@
+//function to make sound
 function makeSound(key) {
     switch (key) {
         case "w":
@@ -39,6 +40,18 @@ function makeSound(key) {
             break;
     }
 }
+
+//function to create animation
+function buttonAnimation(currentKey){
+    //add class press for animation to the button
+    let currentButton = document.querySelector(`.${currentKey}`)
+    currentButton.classList.add("press")
+    //remove class press for animation after 100 miliseconds
+    setTimeout(function() { 
+        currentButton.classList.remove("press")
+    }, 100)
+}
+
 // handle click buttons
 let length = document.getElementsByClassName("drum").length
 
@@ -46,10 +59,13 @@ for (let i = 0; i < length; i++) {
     document.querySelectorAll('button')[i].addEventListener("click",function() {
         let buttonInnerHTML = this.innerHTML
         makeSound(buttonInnerHTML) 
+        buttonAnimation(buttonInnerHTML)
     })
 }
 
 //handle keyboard press
 document.addEventListener("keydown",function(event){
     makeSound(event.key)
+    buttonAnimation(event.key)
 })
+
