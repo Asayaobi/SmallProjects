@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
     text-align: center;
-    background-color: #283149;
+    background-color: #191919;
     margin: 0;
     padding: 0;
   }
@@ -29,7 +29,7 @@ body {
     font-family: sans-serif;
     line-height: 2;
     font-weight: 900;
-    color: #404B69;
+    color: #191919;
     text-shadow: 3px 0 #DBEDF3;
     border-radius: 20px;
     width: 120px;
@@ -46,3 +46,30 @@ body {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2), -2px -2px 10px rgba(255, 255, 255, 0.5);
   }
   
+  .w {
+    background-image: url("drumskit_images/crash.png");
+  }
+
+  .d {
+    background-image: url("drumskit_images/snare.png");
+  }
+
+  .s {
+    background-image: url("drumskit_images/tom1.png");
+  }
+
+  .a {
+    background-image: url("drumskit_images/tom2.png");
+  }
+
+  .j {
+    background-image: url("drumskit_images/tom3.png");
+  }
+
+  .k {
+    background-image: url("drumskit_images/kick.png");
+  }
+
+  .l {
+    background-image: url("drumskit_images/tom4.png");
+  }
