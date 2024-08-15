@@ -1,7 +1,5 @@
-
-function handleClick() {
-    let buttonInnerHTML = this.innerHTML
-    switch (buttonInnerHTML) {
+function makeSound(key) {
+    switch (key) {
         case "w":
             let crash = new Audio('drumskit_sound/crash.mp3')
             crash.play()
@@ -36,16 +34,22 @@ function handleClick() {
             let kick = new Audio('drumskit_sound/kick-bass.mp3')
             kick.play()
             break;
-            
-        default: console.log(buttonInnerHTML)
+
+        default: console.log(key)
             break;
     }
 }
-
-// document.querySelector('.set').addEventListener("click",handleClick)
+// handle click buttons
 let length = document.getElementsByClassName("drum").length
-console.log(length)
 
 for (let i = 0; i < length; i++) {
-    document.querySelectorAll('button')[i].addEventListener("click",handleClick)
+    document.querySelectorAll('button')[i].addEventListener("click",function() {
+        let buttonInnerHTML = this.innerHTML
+        makeSound(buttonInnerHTML) 
+    })
 }
+
+//handle keyboard press
+document.addEventListener("keydown",function(event){
+    makeSound(event.key)
+})
