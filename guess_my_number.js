@@ -4,7 +4,7 @@
 let highScore = 0
 
 //score count
-let score = 21
+let score = 20
 
 // create a number with math random
 let answer =  Math.ceil(Math.random()*20)
@@ -16,23 +16,13 @@ document.querySelector('.check').addEventListener('click', function() {
     //set the guess value from the input
     const guess = Number(document.querySelector('.guess').value)
 
-    //display a score
-    score --
-    console.log('score:', score)
-    console.log('high score', highScore)
-    document.querySelector('.score').textContent = score
+    //check the answer and set the message -no number, correct, too high, too low
 
-    //check the answer and set the message - correct, too high, too low
-
-    //if no number got submitted (falsy)
     if (!guess){
-        document.querySelector('.message').textContent = 'please guess a number'
-    }
-
-    //correct
-    else if (guess == answer) {
+        document.querySelector('.message').textContent = '🔴 please guess a number'
+    } else if (guess === answer) {
         document.querySelector('.number').textContent = answer
-        document.querySelector('.message').textContent = 'correct answer'
+        document.querySelector('.message').textContent = '🎉 Correct answer!'
         //set high score
         if (score > highScore) {
             highScore = score
@@ -40,28 +30,36 @@ document.querySelector('.check').addEventListener('click', function() {
             document.querySelector('.highscore').textContent = highScore
         }
     } 
-
-    //too high
-    else if (guess > answer) {
-        document.querySelector('.message').textContent = 'too high'
-        //reset input
-        document.querySelector('.guess').value = ""
-    } 
-    //too low
-    else {
-        document.querySelector('.message').textContent = 'too low'
-        //reset input
-         document.querySelector('.guess').value = ""
+    
+    //in case the score is less than 0
+    else if (score > 1) {
+         if (guess > answer) {
+            document.querySelector('.message').textContent = '📈 Too high!'
+            score--
+        } else {
+            document.querySelector('.message').textContent = '📉 Too low!'
+            score--
+        }
+    } else {
+        document.querySelector('.message').textContent = 'You Lose! 💥'
+        score = 0
     }
+    
+    
+
+    //display a score
+    document.querySelector('.score').textContent = score
+
 })
 
 //when again is click
 document.querySelector('.again').addEventListener('click', function(){
     //reset number
     document.querySelector('.number').textContent = '?'
+    document.querySelector('.message').textContent = 'Start guessing...'
 
     //reset score
-    score = 21
+    score = 20
     document.querySelector('.score').textContent = 20
 
     //reset input
