@@ -12,12 +12,12 @@ document.querySelector('.check').addEventListener('click', function() {
     //set the guess value from the input
     const guess = Number(document.querySelector('.guess').value)
     
-    // when the answer has no number
+    // when the guess has no number
     if (!guess){
         document.querySelector('.message').textContent = '🔴 please guess a number'
     } 
     
-    //when the answer is correct
+    //when the guess is correct
     else if (guess === answer) {
         document.querySelector('.number').textContent = answer
         document.querySelector('.number').style.width = '30rem'
@@ -31,17 +31,12 @@ document.querySelector('.check').addEventListener('click', function() {
             document.querySelector('.highscore').textContent = highScore
         }
     } 
-    
+    //when the guess is wrong
     //in case the score is less than 0
     else if (score > 1) {
-        //when the answer is too high - too low
-         if (guess > answer) {
-            document.querySelector('.message').textContent = '📈 Too high!'
-            score--
-        } else {
-            document.querySelector('.message').textContent = '📉 Too low!'
-            score--
-        }
+        //too high - too low
+        document.querySelector('.message').textContent = guess > answer ? "📈 Too high!" : "📉 Too low!"
+        score--
     } else {
         document.querySelector('.message').textContent = 'You Lose! 💥'
         score = 0
