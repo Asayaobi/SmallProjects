@@ -6,24 +6,21 @@ const overlay = document.querySelector('.overlay')
 const closeBtn = document.querySelector('.close-modal')
 console.log(openBtn) //array of 3 btns
 
-for (let i = 0; i < openBtn.length; i++){
-    openBtn[i].addEventListener('click', function(){
-        //console.log('open')
-        //modal.style.display = 'block'
-        modal.classList.remove('hidden')
-        overlay.classList.remove('hidden')
-    })
+const openModal = () => {
+    //modal.style.display = 'block'
+    modal.classList.remove('hidden')
+    overlay.classList.remove('hidden')
 }
 
-closeBtn.addEventListener('click', function(){
-    //console.log('close')
+for (let i = 0; i < openBtn.length; i++){
+    openBtn[i].addEventListener('click', openModal)
+}
+
+const closeModal = () => {
     //modal.style.display = 'none'
     modal.classList.add('hidden')
     overlay.classList.add('hidden')
-})
-
-//when we click on the background (overlay) of the modal, the modal box should close too.
-overlay.addEventListener('click', function(){
-    modal.classList.add('hidden')
-    overlay.classList.add('hidden')
-})
+}
+//when we click on the background (overlay) of the modal or on the x button, the modal box should close.
+closeBtn.addEventListener('click', closeModal)
+overlay.addEventListener('click', closeModal)
