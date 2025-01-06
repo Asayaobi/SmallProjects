@@ -21,3 +21,9 @@ closeBtn.addEventListener('click', function(){
     modal.classList.add('hidden')
     overlay.classList.add('hidden')
 })
+
+//when we click on the background (overlay) of the modal, the modal box should close too.
+overlay.addEventListener('click', function(){
+    modal.classList.add('hidden')
+    overlay.classList.add('hidden')
+})
