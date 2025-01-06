@@ -15,3 +15,9 @@ for (let i = 0; i < openBtn.length; i++){
     })
 }
 
+closeBtn.addEventListener('click', function(){
+    //console.log('close')
+    //modal.style.display = 'none'
+    modal.classList.add('hidden')
+    overlay.classList.add('hidden')
+})
