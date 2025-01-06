@@ -5,12 +5,12 @@ let player2 = 0
 //roll the dice
 function rollDicePlayer1() {
     player1 = (Math.floor(Math.random()* 6))+1
-    document.querySelector(".img1").setAttribute("src",`dice_game_images/dice${player1}.png`)
+    document.querySelector(".img1").setAttribute("src",`dice${player1}.png`)
     checkWinners()
 }
 function rollDicePlayer2() {
     player2 = (Math.floor(Math.random()* 6))+1
-    document.querySelector(".img2").setAttribute("src",`dice_game_images/dice${player2}.png`)
+    document.querySelector(".img2").setAttribute("src",`dice${player2}.png`)
     checkWinners()
 }
 
