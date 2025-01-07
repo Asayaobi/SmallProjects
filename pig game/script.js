@@ -30,12 +30,12 @@ when reset is pressed
 let player = 0
 let number
 let currentScore = 0
-let totalScore0 = 0
-let totalScore1 = 0
+let total0 = 0
+let total1 = 0
 
 //when roll dice btn is pressed
 document.querySelector('.btn--roll').addEventListener('click', function(){
-    if (totalScore0 < 100 && totalScore1 < 100){
+    if (total0 < 100 && total1 < 100){
         number = Math.ceil(Math.random()*6)
         document.querySelector('.dice').setAttribute('src', `dice-${number}.png`)
 
@@ -51,3 +51,32 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
     }
 })
 
+//when hold btn is pressed
+document.querySelector('.btn--hold').addEventListener('click', function(){
+    if (total0 < 100 && total1 < 100){
+        if (player === 0){
+            total0 += currentScore
+            document.querySelector(`#score--${player}`).textContent = total0
+            currentScore = 0
+            document.querySelector(`#current--${player}`).textContent = currentScore
+
+            if (total0 >= 100) {
+                document.querySelector('.player--0').classList.add('player--winner')
+            } else {
+                player === 0 ? player = 1 : player = 0
+            }
+            
+        } else {
+            total1 += currentScore
+            document.querySelector(`#score--${player}`).textContent = total1
+            currentScore = 0
+            document.querySelector(`#current--${player}`).textContent = currentScore
+
+            if (total1 >= 100){
+                document.querySelector('.player--1').classList.add('player--winner')
+            } else {
+                player === 0 ? player = 1 : player = 0
+            }
+        }
+    } 
+})
