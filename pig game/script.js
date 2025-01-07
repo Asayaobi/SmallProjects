@@ -27,4 +27,27 @@ when reset is pressed
 3. reset current score
 */
 
+let player = 0
+let number
+let currentScore = 0
+let totalScore0 = 0
+let totalScore1 = 0
+
+//when roll dice btn is pressed
+document.querySelector('.btn--roll').addEventListener('click', function(){
+    if (totalScore0 < 100 && totalScore1 < 100){
+        number = Math.ceil(Math.random()*6)
+        document.querySelector('.dice').setAttribute('src', `dice-${number}.png`)
+
+        if (number > 1){
+            currentScore += number
+            document.querySelector(`#current--${player}`).textContent = currentScore
+        } else {
+            currentScore = 0
+            document.querySelector(`#current--${player}`).textContent = currentScore
+
+            player === 0 ? player = 1 : player = 0
+        }
+    }
+})
 
