@@ -81,3 +81,25 @@ document.querySelector('.btn--hold').addEventListener('click', function(){
         }
     } 
 })
+
+//when reset is pressed
+document.querySelector('.btn--new').addEventListener('click', function(){
+    document.querySelector(`.player--${player}`).classList.remove('player--winner')
+    document.querySelector(`.player--${player}`).classList.remove('player--active')
+
+    player = 0
+    currentScore = 0
+    total0 = 0
+    total1 = 0
+    document.querySelector(`.player--${player}`).classList.add('player--active')
+
+    let currentScores = document.querySelectorAll('.current-score')
+    for (i = 0; i < currentScores.length; i++){
+        currentScores[i].textContent = 0
+    }
+
+    let scores = document.querySelectorAll('.score')
+    for (i = 0; i < scores.length; i++){
+        scores[i].textContent = 0
+    }
+})
