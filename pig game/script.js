@@ -33,6 +33,16 @@ let currentScore = 0
 let total0 = 0
 let total1 = 0
 
+const addPlayerActive = player => {
+    document.querySelector(`.player--${player}`).classList.add('player--active')
+    console.log(`add player ${player}`)
+}
+
+const removePlayerActive = player => {
+    document.querySelector(`.player--${player}`).classList.remove('player--active')
+    console.log(`remove player ${player}`)
+}
+
 //when roll dice btn is pressed
 document.querySelector('.btn--roll').addEventListener('click', function(){
     if (total0 < 100 && total1 < 100){
@@ -43,11 +53,13 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
             currentScore += number
             document.querySelector(`#current--${player}`).textContent = currentScore
         } else {
-            document.querySelector(`.player--${player}`).classList.remove('player--active')
+            // document.querySelector(`.player--${player}`).classList.remove('player--active')
             currentScore = 0
             document.querySelector(`#current--${player}`).textContent = currentScore
+            removePlayerActive(player)
             player === 0 ? player = 1 : player = 0
-            document.querySelector(`.player--${player}`).classList.add('player--active')
+            // document.querySelector(`.player--${player}`).classList.add('player--active')
+            addPlayerActive(player)
         }
     }
 })
@@ -64,7 +76,9 @@ document.querySelector('.btn--hold').addEventListener('click', function(){
             if (total0 >= 100) {
                 document.querySelector('.player--0').classList.add('player--winner')
             } else {
+                removePlayerActive(player)
                 player === 0 ? player = 1 : player = 0
+                addPlayerActive(player)
             }
             
         } else {
@@ -76,7 +90,9 @@ document.querySelector('.btn--hold').addEventListener('click', function(){
             if (total1 >= 100){
                 document.querySelector('.player--1').classList.add('player--winner')
             } else {
+                removePlayerActive(player)
                 player === 0 ? player = 1 : player = 0
+                addPlayerActive(player)
             }
         }
     } 
@@ -91,8 +107,8 @@ document.querySelector('.btn--new').addEventListener('click', function(){
     currentScore = 0
     total0 = 0
     total1 = 0
-    document.querySelector(`.player--${player}`).classList.add('player--active')
-
+    // document.querySelector(`.player--${player}`).classList.add('player--active')
+    addPlayerActive(player)
     let currentScores = document.querySelectorAll('.current-score')
     for (i = 0; i < currentScores.length; i++){
         currentScores[i].textContent = 0
