@@ -44,6 +44,7 @@ const switchPlayer = () => {
     document.querySelector(`.player--${player}`).classList.add('player--active')
 }
 
+
 //when roll dice btn is pressed
 document.querySelector('.btn--roll').addEventListener('click', function(){
     if (total0 < 100 && total1 < 100){
@@ -68,40 +69,24 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
 //when hold btn is pressed
 document.querySelector('.btn--hold').addEventListener('click', function(){
     if (total0 < 100 && total1 < 100){
-        if (player === 0){
-            total0 += currentScore
-            document.querySelector(`#score--${player}`).textContent = total0
-            resetCurrentScore(player)
-
-            if (total0 >= 100) {
-                document.querySelector('.player--0').classList.add('player--winner')
-            } else {
-                switchPlayer()
-            }
-            
-        } else {
-            total1 += currentScore
-            document.querySelector(`#score--${player}`).textContent = total1
-            resetCurrentScore(player)
-
-            if (total1 >= 100){
-                document.querySelector('.player--1').classList.add('player--winner')
-            } else {
-                switchPlayer()
-            }
-        }
+        //update total score
+        const totalScore = player === 0 ? total0 += currentScore : total1 += currentScore
+        document.querySelector(`#score--${player}`).textContent = totalScore
+        resetCurrentScore(player)
+        //check winner
+        totalScore >= 100 ? document.querySelector(`.player--${player}`).classList.add('player--winner') : switchPlayer()
     } 
 })
 
 //when reset is pressed
 document.querySelector('.btn--new').addEventListener('click', function(){
     document.querySelector(`.player--${player}`).classList.remove('player--winner')
-    document.querySelector(`.player--${player}`).classList.remove('player--active')
+    document.querySelector('.player--1').classList.remove('player--active')
+    document.querySelector('.player--0').classList.add('player--active')
 
     player = 0
     total0 = 0
     total1 = 0
-    document.querySelector(`.player--${player}`).classList.add('player--active')
 
     let scores = document.querySelectorAll('.score')
     for (i = 0; i < scores.length; i++){
