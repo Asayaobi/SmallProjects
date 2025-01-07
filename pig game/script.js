@@ -43,10 +43,11 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
             currentScore += number
             document.querySelector(`#current--${player}`).textContent = currentScore
         } else {
+            document.querySelector(`.player--${player}`).classList.remove('player--active')
             currentScore = 0
             document.querySelector(`#current--${player}`).textContent = currentScore
-
             player === 0 ? player = 1 : player = 0
+            document.querySelector(`.player--${player}`).classList.add('player--active')
         }
     }
 })
