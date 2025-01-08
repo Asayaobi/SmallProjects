@@ -87,10 +87,11 @@ document.querySelector('.btn--hold').addEventListener('click', function(){
         resetCurrentScore(player)
         //2. check winner
         if (totalScore >= 100){
-            //2.1 if total score reaches 100 -> winner
+            //2.1 if total score reaches 100 -> styling : winner class / remove dice img
             document.querySelector(`.player--${player}`).classList.remove('player--active')
             document.querySelector(`.player--${player}`).classList.add('player--winner')
             playing = false
+            document.querySelector('.dice').style.display = 'none'
         } else {
             //2.2 if not, switch player
             switchPlayer()
