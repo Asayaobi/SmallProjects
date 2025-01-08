@@ -1,7 +1,7 @@
 /*
 
 when roll dice btn is pressed
--if total score < 100
+-if total score < 100 => playing
 player 1 start
 1. math random dice number -> number
 - if number != 1
@@ -18,7 +18,7 @@ when hold btn is pressed
 2. reset current score
 3. switch player
 
--if score >= 100
+-if score reaches 100 => stop playing
 1. player background -> black
 
 when reset is pressed
@@ -36,6 +36,8 @@ let total1 = 0
 
 //starting conditions
 document.querySelector('.dice').style.display = 'none'
+//playing will be false once the total score reaches 100
+let playing = true
 
 
 const resetCurrentScore = player => {
@@ -51,7 +53,7 @@ const switchPlayer = () => {
 
 //when roll dice btn is pressed
 document.querySelector('.btn--roll').addEventListener('click', function(){
-    if (total0 < 100 && total1 < 100){
+    if (playing){
         //1. Generating random dice roll
         number = Math.ceil(Math.random()*6)
         //2. Display dice
@@ -78,6 +80,7 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
 
 //when hold btn is pressed
 document.querySelector('.btn--hold').addEventListener('click', function(){
+    if (playing){
         //1. add current score to the total score
         const totalScore = player === 0 ? total0 += currentScore : total1 += currentScore
         document.getElementById(`score--${player}`).textContent = totalScore
@@ -87,10 +90,12 @@ document.querySelector('.btn--hold').addEventListener('click', function(){
             //2.1 if total score reaches 100 -> winner
             document.querySelector(`.player--${player}`).classList.remove('player--active')
             document.querySelector(`.player--${player}`).classList.add('player--winner')
+            playing = false
         } else {
             //2.2 if not, switch player
             switchPlayer()
         }
+    }
 })
 
 //when reset is pressed
@@ -102,6 +107,7 @@ document.querySelector('.btn--new').addEventListener('click', function(){
     player = 0
     total0 = 0
     total1 = 0
+    playing = true
 
     let scores = document.querySelectorAll('.score')
     for (i = 0; i < scores.length; i++){
