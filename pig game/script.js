@@ -1,3 +1,4 @@
+'use strict'
 /*
 
 when roll dice btn is pressed
@@ -28,17 +29,26 @@ when reset is pressed
 4. hidden dice image
 */
 
-let player = 0
-let number
-let currentScore = 0
-let total0 = 0
-let total1 = 0
+let playing, player, currentScore, total0, total1, number
 
-//starting conditions
-document.querySelector('.dice').style.display = 'none'
-//playing will be false once the total score reaches 100
-let playing = true
+const initGame = () => {
+    playing = true //playing will be false once the total score reaches 100
+    player = 0
+    currentScore = 0
+    total0 = 0
+    total1 = 0
+    document.querySelector('.player--0').classList.remove('player--winner')
+    document.querySelector('.player--1').classList.remove('player--winner')
+    document.querySelector('.player--1').classList.remove('player--active')
+    document.querySelector('.player--0').classList.add('player--active')
+    document.querySelector('.dice').style.display = 'none'
+    document.getElementById('score--0').textContent = total0
+    document.getElementById('score--1').textContent = total1
+    document.getElementById('current--0').textContent = currentScore
+    document.getElementById('current--1').textContent = currentScore
+}
 
+initGame()
 
 const resetCurrentScore = player => {
     currentScore = 0
@@ -100,21 +110,5 @@ document.querySelector('.btn--hold').addEventListener('click', function(){
 })
 
 //when reset is pressed
-document.querySelector('.btn--new').addEventListener('click', function(){
-    document.querySelector(`.player--${player}`).classList.remove('player--winner')
-    document.querySelector('.player--1').classList.remove('player--active')
-    document.querySelector('.player--0').classList.add('player--active')
-
-    player = 0
-    total0 = 0
-    total1 = 0
-    playing = true
-
-    let scores = document.querySelectorAll('.score')
-    for (i = 0; i < scores.length; i++){
-        scores[i].textContent = 0
-    }
-
-    document.querySelector('.dice').style.display = 'none'
-})
+document.querySelector('.btn--new').addEventListener('click', initGame)
 
