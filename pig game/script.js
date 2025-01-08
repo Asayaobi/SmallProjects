@@ -25,6 +25,7 @@ when reset is pressed
 1. reset player background 
 2. reset total score
 3. reset current score
+4. hidden dice image
 */
 
 let player = 0
@@ -44,11 +45,11 @@ const switchPlayer = () => {
     document.querySelector(`.player--${player}`).classList.add('player--active')
 }
 
-
 //when roll dice btn is pressed
 document.querySelector('.btn--roll').addEventListener('click', function(){
     if (total0 < 100 && total1 < 100){
         number = Math.ceil(Math.random()*6)
+        document.querySelector('.dice').style.display = 'block'
         document.querySelector('.dice').setAttribute('src', `dice-${number}.png`)
 
         if (number > 1){
@@ -92,4 +93,7 @@ document.querySelector('.btn--new').addEventListener('click', function(){
     for (i = 0; i < scores.length; i++){
         scores[i].textContent = 0
     }
+
+    document.querySelector('.dice').style.display = 'none'
 })
+
