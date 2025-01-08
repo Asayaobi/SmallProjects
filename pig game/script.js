@@ -34,28 +34,37 @@ let currentScore = 0
 let total0 = 0
 let total1 = 0
 
+//starting conditions
+document.querySelector('.dice').style.display = 'none'
+
+
 const resetCurrentScore = player => {
     currentScore = 0
-    document.querySelector(`#current--${player}`).textContent = currentScore
+    document.getElementById(`current--${player}`).textContent = currentScore
 }
 
 const switchPlayer = () => {
-    document.querySelector(`.player--${player}`).classList.remove('player--active')
-    player === 1 ? player = 0 : player = 1
-    document.querySelector(`.player--${player}`).classList.add('player--active')
+    player = player === 0 ?  1 : 0
+    document.querySelector(`.player--0`).classList.toggle('player--active')
+    document.querySelector(`.player--1`).classList.toggle('player--active')
 }
 
 //when roll dice btn is pressed
 document.querySelector('.btn--roll').addEventListener('click', function(){
     if (total0 < 100 && total1 < 100){
+        //1. Generating random dice roll
         number = Math.ceil(Math.random()*6)
+        //2. Display dice
         document.querySelector('.dice').style.display = 'block'
         document.querySelector('.dice').setAttribute('src', `dice-${number}.png`)
 
+        //3. Check for dice number 1
         if (number > 1){
+            //3.1 show current score
             currentScore += number
             document.querySelector(`#current--${player}`).textContent = currentScore
         } else {
+            //3.2 switch player
             // currentScore = 0
             // document.querySelector(`#current--${player}`).textContent = currentScore
             resetCurrentScore(player)
@@ -69,14 +78,19 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
 
 //when hold btn is pressed
 document.querySelector('.btn--hold').addEventListener('click', function(){
-    if (total0 < 100 && total1 < 100){
-        //update total score
+        //1. add current score to the total score
         const totalScore = player === 0 ? total0 += currentScore : total1 += currentScore
-        document.querySelector(`#score--${player}`).textContent = totalScore
+        document.getElementById(`score--${player}`).textContent = totalScore
         resetCurrentScore(player)
-        //check winner
-        totalScore >= 100 ? document.querySelector(`.player--${player}`).classList.add('player--winner') : switchPlayer()
-    } 
+        //2. check winner
+        if (totalScore >= 100){
+            //2.1 if total score reaches 100 -> winner
+            document.querySelector(`.player--${player}`).classList.remove('player--active')
+            document.querySelector(`.player--${player}`).classList.add('player--winner')
+        } else {
+            //2.2 if not, switch player
+            switchPlayer()
+        }
 })
 
 //when reset is pressed
