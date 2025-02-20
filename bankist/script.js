@@ -75,3 +75,45 @@ header.after(message)
 document.querySelector('.btn--close--cookie').addEventListener('click', function(){
     message.remove()
 })
+
+//style (inline style)
+message.style.backgroundColor = '#34383d'
+message.style.width = '120%'
+
+//reading in line style
+console.log(message.style.backgroundColor)
+//reading style from other value eg. from default or from style.css class
+console.log(getComputedStyle(message).height)//43.6667px
+//update more height
+message.style.height = Number.parseFloat(getComputedStyle(message).height) + 30 + 'px'
+
+//Change prebuilt primary color property from the root (document) to orange
+document.documentElement.style.setProperty('--color-primary', 'orangered')
+
+//Attribute
+//log attribute of logo img
+const logo = document.querySelector('.nav__logo')
+console.log(logo.alt) //Bankist logo
+console.log(logo.src) //http://127.0.0.1:5500/bankist/img/logo.png
+console.log(logo.getAttribute('src')) //img/logo.png
+console.log(logo.className)//nav__logo
+
+//add attribute
+logo.setAttribute('company', 'Bankist')//<img src="img/logo.png" alt="Bankist logo" class="nav__logo" id="logo" company="Bankist">
+
+//changing link
+const link = document.querySelector('.nav__link--btn')
+console.log(link.href)//http://127.0.0.1:5500/bankist/index.html#
+console.log(link.getAttribute('href'))//#
+
+//Data type 
+// with the attribute that starts with the word data
+//<img src="img/logo.png" class="nav__logo" data-set-version-number="3.0"/>
+console.log(logo.dataset.setVersionNumber)//3.0
+
+//Classes
+logo.classList.add('a','b')
+logo.classList.remove('a','b')
+logo.classList.toggle('a')
+logo.classList.contains('a')
+
