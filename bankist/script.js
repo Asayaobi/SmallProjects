@@ -35,7 +35,16 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+//Smooth scroll
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function(e){
+  section1.scrollIntoView({behavior: 'smooth'});
+});
+
 //////////////////////////////////
+/*
 //Lecture
 
 //Selecting DOM Elements
@@ -117,3 +126,22 @@ logo.classList.remove('a','b')
 logo.classList.toggle('a')
 logo.classList.contains('a')
 
+/////////////////////
+//Smooth scroll
+const btnScrollTo = document.querySelector('.btn--scroll-to')
+const section1 = document.querySelector('#section--1')
+
+btnScrollTo.addEventListener('click', function(e){
+  //scroll mannually
+  // const s1coords = section1.getBoundingClientRect()
+  // console.log(s1coords) //returns position left right top..{"x": -1.3333333730697632,"y": 812.9896240234375,"width": 780,"height": 1861.3646240234375,"top": 812.9896240234375,"right": 778.6666666269302,"bottom": 2674.354248046875,"left": -1.3333333730697632}
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset, 
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth'
+  // })
+
+  //scroll with scrollIntoView
+  section1.scrollIntoView({behavior: 'smooth'})
+})
+  */
