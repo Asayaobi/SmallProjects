@@ -144,4 +144,33 @@ btnScrollTo.addEventListener('click', function(e){
   //scroll with scrollIntoView
   section1.scrollIntoView({behavior: 'smooth'})
 })
+
+/////////////////////////////
+//Type of Events and Even Listener
+//1. use addEventListener
+const h1 = document.querySelector('h1')
+
+// h1.addEventListener('mouseenter', function(e){
+//   alert('mouseenter')
+// })
+//2. use the on event property
+// h1.onmouseenter = function(e){
+//      alert('mouseenter')
+// }
+
+//remove eventlistener function 
+//1.  pop up the alert once.
+// const h1alert = function(){
+//   alert('mouseenter over h1')
+//   h1.removeEventListener('mouseenter', h1alert)
+// }
+// h1.addEventListener('mouseenter', h1alert)
+
+//2. remove alert after 5secs
+const h1alert = function(){
+    alert('mouseenter over h1')
+  }
+  h1.addEventListener('mouseenter', h1alert)
+  setTimeout(()=> 
+    h1.removeEventListener('mouseenter', h1alert), 5000)
   */
