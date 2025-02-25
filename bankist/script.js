@@ -44,15 +44,30 @@ btnScrollTo.addEventListener('click', function(e){
 
 //page navigation
 //loop through every link element in nav bar
-document.querySelectorAll('.nav__link').forEach(function(element){
-  element.addEventListener('click', function(e){
+//option1
+//1. Add eventListener to common parent element
+//2. Determine what element originate the element
+document.querySelector('.nav__links').addEventListener(('click'), function(e){
+  e.preventDefault();
+  //console.log(e.target)//<a class="nav__link" href="#section--3">Testimonials</a>
+  //3. see if it's the matching element
+  if (e.target.classList.contains('nav__link')){
     e.preventDefault();
-    //console.log(this)//<a class="nav__link" href="#section--1">Features</a>
-    //console.log(this.getAttribute('href'))//#section--1
-    const id = this.getAttribute('href');
+    const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({behavior: 'smooth'});
-  });
+  }
 });
+
+//option2
+// document.querySelectorAll('.nav__link').forEach(function(element){
+//   element.addEventListener('click', function(e){
+//     e.preventDefault();
+//      console.log(this)//<a class="nav__link" href="#section--1">Features</a>
+//      console.log(this.getAttribute('href'))//#section--1
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+//   });
+// });
 
 //////////////////////////////////
 /*
