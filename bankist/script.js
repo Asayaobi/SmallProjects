@@ -173,4 +173,17 @@ const h1alert = function(){
   h1.addEventListener('mouseenter', h1alert)
   setTimeout(()=> 
     h1.removeEventListener('mouseenter', h1alert), 5000)
-  */
+
+
+  //////////////////////
+  //generate random number
+  const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1))
+  //generate random color for rgb : rgb(255, 255, 255)
+  const randomColor = () => (`rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`)
+  console.log(randomColor())//rgb(238, 237, 48)
+  document.querySelector('h1').addEventListener(('click'), function(e){
+    this.style.backgroundColor = randomColor()
+    console.log(this)
+    console.log(e.currentTarget) //this === e.currentTarget ===  h1 element
+  })
+ */
