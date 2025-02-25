@@ -42,6 +42,18 @@ btnScrollTo.addEventListener('click', function(e){
   section1.scrollIntoView({behavior: 'smooth'});
 });
 
+//page navigation
+//loop through every link element in nav bar
+document.querySelectorAll('.nav__link').forEach(function(element){
+  element.addEventListener('click', function(e){
+    e.preventDefault();
+    //console.log(this)//<a class="nav__link" href="#section--1">Features</a>
+    //console.log(this.getAttribute('href'))//#section--1
+    const id = this.getAttribute('href');
+    document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+  });
+});
+
 //////////////////////////////////
 /*
 //Lecture
