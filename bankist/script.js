@@ -212,4 +212,34 @@ const h1alert = function(){
     console.log(this)
     console.log(e.currentTarget) //this === e.currentTarget ===  h1 element
   })
+
+  //////////////////////
+  //traversing
+
+  const h1 = document.querySelector('h1')
+
+  //going downward -> child
+  console.log(h1.querySelectorAll('.highlight'))//NodeList(2) [span.highlight, span.highlight]
+  console.log(h1.childNodes)//NodeList(9) [text, comment, text, span.highlight, text, br, text, span.highlight, text]
+  console.log(h1.children)//HTMLCollection(3) [span.highlight, br, span.highlight]
+  h1.firstElementChild.style.color = 'white'
+  h1.lastElementChild.style.color = 'orangered'
+
+  //going upwards -> parent
+  console.log(h1.parentNode)//<div class="header__title">
+  console.log(h1.parentElement)//<div class="header__title">
+  closest acts as queryselector but upwards (to get the closet parent to h1)
+  h1.closest('.header').style.background = 'var(--gradient-secondary)'
+
+  //going sideway -> siblings
+  console.log(h1.previousElementSibling)//null because h1 is the first element so theres no previous sibling
+  console.log(h1.nextElementSibling)//<h4>A simpler banking experience for a simpler life.</h4>
+
+  console.log(h1.parentElement.children)//[h1, h4, button.btn--text.btn--scroll-to, img.header__img]
+
+  //scale the size of all elements around h1 except h1
+  const allElements = [...h1.parentElement.children]
+  allElements.forEach((element) => {
+    if (element !== h1) element.style.transform = 'scale(0.5)'
+  })
  */
